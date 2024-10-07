@@ -53,13 +53,17 @@ print(f"P-Value: {p_value:.4f}")
 
 # conclusion
 if p_value < alpha:
-  print("Reject the null hypothesis. There is sufficient evidence to conclude that the mean sold price of homes in Maui is not $1 million.")
+  print("Reject the null hypothesis. There is sufficient evidence to conclude that the mean sold price of homes in Maui is not $1.5 million.")
 else:
-  print("Do not reject the null hypothesis. There is not sufficient evidence to conclude that the mean sold price of homes in Maui is different from $1 million.")
+  print("Do not reject the null hypothesis. There is not sufficient evidence to conclude that the mean sold price of homes in Maui is different from $1.5 million.")
+
+# Calculate the Critical Value for the t-distribution
+degrees_of_freedom = len(sold_prices)-1
+critical_value = stats.t.ppf(1-alpha/2, degrees_of_freedom)
 
 # Create the sampling distribution
-x = np.linspace(-10,10,1000)
-y = stats.t.pdf(x, df)
+x = np.linspace(-4,4,1000)
+y = stats.t.pdf(x, degrees_of_freedom)
 plt.plot(x,y, label="t-dist", color="blue")
 plt.fill_between(x,y, where=(x > critical_value) | (x < -critical_value), color="red", alpha=alpha, label="Rejection Region")
 plt.axvline(t_stat, color="green", linestyle="--", label=f"t-STAT = {t_stat:.4f}")
