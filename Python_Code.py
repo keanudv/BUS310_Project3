@@ -21,7 +21,7 @@ df.head()
 df.tail()
 
 # Select only the needed columns
-columns = df["Sold_Price"]
+columns = df[["City","Sold_Price"]]
 print(columns)
 
 # Create a new dataframe with the selected columns
@@ -40,7 +40,7 @@ final_df.min()
 final_df.dtypes
 
 # Set the null hypothesis and significance level
-null_hypothesis = 1_000_000
+null_hypothesis = 1_500_000
 alpha = 0.05
 
 # Extract the sold prices
