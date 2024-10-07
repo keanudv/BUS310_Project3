@@ -56,3 +56,14 @@ if p_value < alpha:
   print("Reject the null hypothesis. There is sufficient evidence to conclude that the mean sold price of homes in Maui is not $1 million.")
 else:
   print("Do not reject the null hypothesis. There is not sufficient evidence to conclude that the mean sold price of homes in Maui is different from $1 million.")
+
+# Create the sampling distribution
+x = np.linspace(-4,4,1000)
+y = stats.t.pdf(x, df)
+plt.plot(x,y, label="t-dist", color="blue")
+plt.fill_between(x,y, where=(x > critical_value) | (x < -critical_value), color="red", alpha=alpha, label="Rejection Region")
+plt.axvline(t_stat, color="green", linestyle="--", label=f"t-STAT = {t_stat:.4f}")
+plt.text(t_stat, 0.05, f'{t_stat:.3f}', color='green', horizontalalignment='center')
+plt.text(critical_value, 0.05, f'{critical_value:.3f}', color='red', horizontalalignment='right')
+plt.text(-critical_value, 0.05, f'{-critical_value:.3f}', color='red', horizontalalignment='left')
+plt.show()
