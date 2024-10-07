@@ -30,9 +30,10 @@ new_df.head()
 final_df = new_df.dropna()
 
 #Exploratory Data Analysis (EDA)
-final_df.isnull().sum
+final_df.isnull().sum()
 final_df.shape
-fianl_df.describe()
+final_df.describe()
 final_df.max()
 final_df.min()
+final_df.dtypes
 
