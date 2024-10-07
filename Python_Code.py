@@ -39,8 +39,9 @@ final_df.max()
 final_df.min()
 final_df.dtypes
 
-# Set the null hypothesis
+# Set the null hypothesis and significance level
 null_hypothesis = 1_000_000
+alpha = 0.05
 
 # Extract the sold prices
 sold_prices = final_df["Sold_Price"]
@@ -49,3 +50,9 @@ sold_prices = final_df["Sold_Price"]
 t_stat, p_value = stats.ttest_1samp(sold_prices, null_hypothesis)
 print(f"t-STAT: {t_stat:.4f}")
 print(f"P-Value: {p_value:.4f}")
+
+# conclusion
+if p_value < alpha:
+  print("Reject the null hypothesis. There is sufficient evidence to conclude that the mean sold price of homes in Maui is not $1 million.")
+else:
+  print("Do not reject the null hypothesis. There is not sufficient evidence to conclude that the mean sold price of homes in Maui is different from $1 million.")
