@@ -8,6 +8,8 @@ Class: BUS 310
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
 
 # Load the dataset into Python
 file_location = "C:\\Users\\keanu\\OneDrive\\Desktop\\School\\Data Science\\BUS 310 Projects\\Hotsheet.csv"
@@ -19,7 +21,7 @@ df.head()
 df.tail()
 
 # Select only the needed columns
-columns = df[["City", "Sold_Price"]]
+columns = df["Sold_Price"]
 print(columns)
 
 # Create a new dataframe with the selected columns
@@ -29,7 +31,7 @@ new_df.head()
 # Drop missing values and create the final dataframe for analysis
 final_df = new_df.dropna()
 
-#Exploratory Data Analysis (EDA)
+# Exploratory Data Analysis (EDA)
 final_df.isnull().sum()
 final_df.shape
 final_df.describe()
@@ -37,3 +39,13 @@ final_df.max()
 final_df.min()
 final_df.dtypes
 
+# Set the null hypothesis
+null_hypothesis = 1_000_000
+
+# Extract the sold prices
+sold_prices = final_df["Sold_Price"]
+
+# Perform the t-test
+t_stat, p_value = stats.ttest_1samp(sold_prices, null_hypothesis)
+print(f"t-STAT: {t_stat:.4f}")
+print(f"P-Value: {p_value:.4f}")
