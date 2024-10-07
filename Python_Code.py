@@ -58,7 +58,7 @@ else:
   print("Do not reject the null hypothesis. There is not sufficient evidence to conclude that the mean sold price of homes in Maui is different from $1 million.")
 
 # Create the sampling distribution
-x = np.linspace(-4,4,1000)
+x = np.linspace(-10,10,1000)
 y = stats.t.pdf(x, df)
 plt.plot(x,y, label="t-dist", color="blue")
 plt.fill_between(x,y, where=(x > critical_value) | (x < -critical_value), color="red", alpha=alpha, label="Rejection Region")
